@@ -14,17 +14,29 @@ export default function Home() {
   const [pixels, setPixels] = useState(CanvasLib.createEmptyCanvas());
 
   //will be called by Cell component
-  const paint = (xPos, yPos) => {
+  const paint = (yPos, xPos) => {
     //copy from old 2d Array
     const newPixels = CanvasLib.copyCanvas(pixels);
+    newPixels[yPos][xPos] = selColor;
+    setPixels(newPixels);
     //your code here
   };
 
   const clear = () => {
-    //your code here
     //Hint : use CanvasLib.createEmptyCanvas()
+    setPixels(CanvasLib.createEmptyCanvas());
   };
 
+  const random = () => {
+    const a = [];
+    const color = CanvasLib.createRandomCanvas();
+    for (let i = 0; i < 16; i++) {
+      a.push([]);
+      for (let j = 0; j < 16; j++)
+        a[i].push(color[Math.floor(Math.random() * 100) % 16]);
+    }
+    setPixels(a);
+  };
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "GhostWhite" }}>
       <PainterContext.Provider value={{ selColor, setSelColor, pixels, paint }}>
@@ -36,7 +48,9 @@ export default function Home() {
           <button className="btn btn-dark" onClick={clear}>
             Clear
           </button>
-          <button className="btn btn-dark">Random Color</button>
+          <button className="btn btn-dark" onClick={random}>
+            Random Color
+          </button>
         </div>
       </PainterContext.Provider>
     </div>

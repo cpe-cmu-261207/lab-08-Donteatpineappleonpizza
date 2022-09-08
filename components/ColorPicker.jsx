@@ -15,6 +15,8 @@ export default function ColorPicker(props) {
         borderStyle: "solid",
 
         //if this color is selected, show this
+        borderColor: selColor == color ? "magenta" : "black",
+        borderWidth: selColor == color ? "7px" : "2px",
         //borderColor: "magenta",
         //borderWidth: "7px",
 
@@ -24,7 +26,7 @@ export default function ColorPicker(props) {
       }}
       onClick={() => {
         //set selecting color when clicked
-        //your code here
+        setSelColor(color);
       }}
     />
   );

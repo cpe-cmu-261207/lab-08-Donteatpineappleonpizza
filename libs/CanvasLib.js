@@ -32,6 +32,7 @@ const CanvasLib = {
       "#B100FE",
       "#FF006E",
     ];
+    return colors;
   },
 };
 
